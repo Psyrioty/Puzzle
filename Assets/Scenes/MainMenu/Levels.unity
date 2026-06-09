@@ -154,6 +154,7 @@ MonoBehaviour:
   - Level_3
   - Level_4
   levelPrefab: {fileID: 3388405043364106393, guid: 01f3da03bda854884b333070948e78c0, type: 3}
+  levelNoActivePrefab: {fileID: 3388405043364106393, guid: 12762afa5e14253ae8d9f5c398b3e253, type: 3}
 --- !u!4 &83819148
 Transform:
   m_ObjectHideFlags: 0
