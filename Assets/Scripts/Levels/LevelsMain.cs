@@ -34,7 +34,8 @@ public class LevelsMain : MonoBehaviour
             GameObject level = Instantiate(levelPrefab, new Vector3(x, y, 0), Quaternion.identity);
             TextMeshPro text = level.GetComponent<TextMeshPro>();
 
-            Debug.Log(text);
+            text.text = (i + 1).ToString();
+
         }
     }
     //===========================================================
