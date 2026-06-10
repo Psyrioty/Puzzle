@@ -6,7 +6,6 @@ public class LevelsMenuButton : MonoBehaviour
     private int level = 1;
     void OnMouseDown()
     {
-        Debug.Log("Нажат уровень " + level);
         SceneManager.LoadScene("Level_" + level);
     }
 

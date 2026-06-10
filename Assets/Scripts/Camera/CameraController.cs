@@ -6,6 +6,7 @@ public class CameraController: MonoBehaviour
     //-------------------ДЛЯ ДВИЖЕНИЯ КАМЕРЫ--------------------
     private float mouseClickStartX, mouseClickStartY;
     private bool clicked = false;
+    private bool pause = false;
     [SerializeField] private Transform target;
     [SerializeField] private float stepModifier = 0.1F;
     [SerializeField] private float maxMoveX = 10;
@@ -36,9 +37,25 @@ public class CameraController: MonoBehaviour
 
 
     //--------------ДВИЖЕНИЕ КАМЕРЫ--------------------------
+    public void StopCamera()
+    {
+        pause = true;
+    }
+
+    public void ReturnCamera()
+    {
+        pause = false;
+    }
+
     private void MoveCamera()
     {
         CheckClick();
+
+        if (pause)
+        {
+            return;
+        }
+        
         Move();
     }
 
