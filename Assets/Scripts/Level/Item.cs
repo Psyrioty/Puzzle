@@ -12,7 +12,7 @@ public class Item : MonoBehaviour
     }
 
     //нажал
-    void OnMouseDown()
+    public void Click()
     {
         PasteItem();
     }

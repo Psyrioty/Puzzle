@@ -58,7 +58,7 @@ public class ItemBar : MonoBehaviour
 
 
     //нажал
-    void OnMouseDown()
+    public void Click()
     {
         clicked = true;
         cameraController.StopCamera();

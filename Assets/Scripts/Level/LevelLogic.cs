@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class LevelLogic : MonoBehaviour
 {
@@ -10,15 +13,130 @@ public class LevelLogic : MonoBehaviour
     [SerializeField] private GameObject itemBarPrefab;
     [SerializeField] private Transform camera;
     [SerializeField] private float stepOffset = 1200;
+    [SerializeField] private GameObject bar;
+    [SerializeField] private Scrollbar scrollbar;
+    private int maxPoints = 0; //это максимальный прогресс
+    private int progress = 0; //прогресс
 
     void Start()
     {
         FindAllItems();
+        maxPoints = items.Count;
     }
 
     void Update()
     {
-        
+        CheckMouseDown();
+    }
+
+
+    //ищу самый верхний коллайдер
+    private void CheckMouseDown()
+    {
+        if (!Mouse.current.leftButton.wasPressedThisFrame)
+            return;
+
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(
+            Mouse.current.position.ReadValue()
+        );
+
+        Collider2D[] hits = Physics2D.OverlapPointAll(mousePos);
+
+        if (hits.Length == 0)
+            return;
+
+        SpriteRenderer topSprite = null;
+        SpriteMask topMask = null;
+        GameObject parent = null;
+
+        foreach (Collider2D hit in hits)
+        {
+            SpriteRenderer sprite = hit.GetComponent<SpriteRenderer>();
+            if(sprite == null)
+            {
+                sprite = hit.transform.GetComponentInChildren<SpriteRenderer>();
+                parent = hit.gameObject;
+            }
+
+            SpriteMask mask = hit.GetComponent<SpriteMask>();
+            if(sprite == null)
+            {
+                mask = hit.transform.GetComponent<SpriteMask>();
+            }
+
+            if(sprite == null && mask == null)
+            {
+                continue;
+            }
+
+            if(topSprite == null)
+            {
+                topSprite = sprite;
+            }
+
+            if (topSprite != null && sprite != null){
+                if(topSprite.sortingOrder < sprite.sortingOrder)
+                {
+                    topSprite = sprite;
+                }
+            }
+
+            if(topMask == null)
+            {
+                topMask = mask;
+            }
+        }
+
+        if(parent != null)
+        {
+            ClickGameObject(parent);
+            return;
+        }
+
+        if(topSprite == null && topMask != null)
+        { 
+            ClickGameObject(topMask.gameObject);
+            return;
+        }
+
+        if(topSprite == null)
+        {
+            return;
+        }
+
+        ClickGameObject(topSprite.gameObject);
+    }
+
+    //ищу нажатый коллайдер
+    private void ClickGameObject(GameObject gameObject)
+    {
+        if(gameObject == null)
+        {
+            return;
+        }
+
+        foreach(GameObject target in items)
+        {
+            if(target == gameObject)
+            {
+                target.GetComponent<Item>().Click();
+                return;
+            }
+        }
+
+        foreach(GameObject target in itemBars)
+        {
+            if(target == gameObject)
+            {
+                target.GetComponent<ItemBar>().Click();
+                return;
+            }
+        }
+
+        if(bar == gameObject)
+        {
+            bar.GetComponent<Bar>().Click();
+        }
     }
 
 
@@ -75,6 +193,7 @@ public class LevelLogic : MonoBehaviour
         return items;
     }
 
+    //правильно поставил
     public void Step()
     {
         int i = 0;
@@ -95,5 +214,11 @@ public class LevelLogic : MonoBehaviour
 
             i++;
         }
+
+
+            
+        progress++;
+        float size = (float)progress / (float)maxPoints;
+        scrollbar.size = size;
     }
 }

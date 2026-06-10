@@ -6,7 +6,7 @@ public class Bar : MonoBehaviour
     private bool clicked = false;
     [SerializeField] private CameraController cameraController;
     //нажал
-    void OnMouseDown()
+    public void Click()
     {
         clicked = true;
         cameraController.StopCamera();
