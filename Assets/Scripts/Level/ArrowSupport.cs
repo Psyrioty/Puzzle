@@ -9,6 +9,11 @@ public class ArrowSupport : MonoBehaviour
     private Vector3 min, max;
     SpriteRenderer sprite;
 
+    [SerializeField] int offsetMaxX = 0;
+    [SerializeField] int offsetMaxY = 0;
+    [SerializeField] int offsetMinX = 0;
+    [SerializeField] int offsetMinY = 0;
+
     void Start()
     {
         LevelLogic levelLogic = transform.parent.GetComponent<LevelLogic>();
@@ -53,10 +58,10 @@ public class ArrowSupport : MonoBehaviour
 
         if(
             !(
-                pos.x <= max.x &&
-                pos.y <= max.y &&
-                pos.x >= min.x &&
-                pos.y >= min.y
+                pos.x <= max.x - offsetMaxX &&
+                pos.y <= max.y - offsetMaxY &&
+                pos.x >= min.x + offsetMinX &&
+                pos.y >= min.y + offsetMinY
             )
         )
         {
@@ -114,27 +119,27 @@ public class ArrowSupport : MonoBehaviour
         float y = pos.y;
 
         if(
-            pos.x < min.x
+            pos.x < min.x + offsetMinX
         )
         {
-            x = min.x;
+            x = min.x + offsetMinX;
         }else if(
-            pos.x > max.x
+            pos.x > max.x - offsetMaxX
         )
         {
-            x = max.x;
+            x = max.x - offsetMaxX;
         }
 
         if(
-            pos.y < min.y
+            pos.y < min.y + offsetMinY
         )
         {
-            y = min.y;
+            y = min.y + offsetMinY;
         }else if(
-            pos.y > max.y
+            pos.y > max.y - offsetMaxY
         )
         {
-            y = max.y;
+            y = max.y - offsetMaxY;
         }
 
         if(

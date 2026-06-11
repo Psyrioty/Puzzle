@@ -874,6 +874,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 50000
+  offsetMaxX: 0
+  offsetMaxY: 0
+  offsetMinX: 0
+  offsetMinY: 1000
 --- !u!224 &227606699 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7866716026617242719, guid: 688c72e91b55cfc6c92d059987bdefb0, type: 3}
