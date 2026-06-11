@@ -145,3 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12bfef1a7d5e3e2829a8bbf28cf39d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  itemBar: {fileID: 0}
+  trueMoveSounds:
+  - {fileID: 8300000, guid: a36351fdf977489e587835d4c6c7a4a2, type: 3}
+  - {fileID: 8300000, guid: 9fb389c5a778a669d9150d7479ce00e3, type: 3}
+  - {fileID: 8300000, guid: d5f5ad3ab0d49416680a4d4afd4898d9, type: 3}

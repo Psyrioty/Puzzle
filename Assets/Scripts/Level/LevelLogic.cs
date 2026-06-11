@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -17,6 +18,11 @@ public class LevelLogic : MonoBehaviour
     [SerializeField] private Scrollbar scrollbar;
     private int maxPoints = 0; //это максимальный прогресс
     private int progress = 0; //прогресс
+
+    //------------------звук----------------------
+    [SerializeField] private List<AudioClip> trueMoveSounds; //когда вставил в нужную ячейку
+    [SerializeField] private AudioSource otherAudio;//создание других звуков
+    //=============================================
 
     void Start()
     {
@@ -55,7 +61,10 @@ public class LevelLogic : MonoBehaviour
             if(sprite == null)
             {
                 sprite = hit.transform.GetComponentInChildren<SpriteRenderer>();
-                parent = hit.gameObject;
+                if(sprite != null)
+                {
+                    parent = hit.gameObject;
+                }
             }
 
             SpriteMask mask = hit.GetComponent<SpriteMask>();
@@ -196,6 +205,7 @@ public class LevelLogic : MonoBehaviour
     //правильно поставил
     public void Step()
     {
+        GetComponent<RandomSound>().PlaySoundRandom(trueMoveSounds, otherAudio);
         int i = 0;
         foreach(GameObject itemBar in itemBars){
             Vector3 pos = itemBar.transform.localPosition;

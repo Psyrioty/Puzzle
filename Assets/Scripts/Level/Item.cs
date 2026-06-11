@@ -6,6 +6,11 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private GameObject itemBar;
     private LevelLogic levelLogic;
+
+
+    [SerializeField] private List<AudioClip> trueMoveSounds; //когда в своей ячейке
+
+
     void Start()
     {
         

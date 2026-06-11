@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,10 +13,13 @@ public class ItemBar : MonoBehaviour
     private Animator animator;
     [SerializeField] private GameObject item;
     private bool blocked = true;
-    private float step = 1200;
 
 
-    void Start()
+    [SerializeField] private List<AudioClip> startMoveSounds;
+    [SerializeField] private List<AudioClip> falseMoveSounds; //когда неверно
+
+
+    void Awake()
     {
         CheckAnimator();
         cameraController = transform.parent.GetComponent<CameraController>();
@@ -69,6 +73,7 @@ public class ItemBar : MonoBehaviour
         }
 
         StartMoveAnimation();
+        GetComponent<RandomSound>().PlaySoundRandom(startMoveSounds);
     }
 
 
@@ -104,6 +109,8 @@ public class ItemBar : MonoBehaviour
             cameraController.ReturnCamera();
             MoveLocalPosition(startPosition);
             EndMoveAnimation();
+
+            GetComponent<RandomSound>().PlaySoundRandom(falseMoveSounds);
         }
 
     }
