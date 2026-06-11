@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelsMain : MonoBehaviour
 {
@@ -20,8 +21,8 @@ public class LevelsMain : MonoBehaviour
     //--------------ДОБАВЛЕНИЕ ВСЕХ КНОПОК УРОВНЕЙ--------------
     private void AddAllLevelButtons()
     {
-        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);;
-        for (int i = 0; i < levelNames.Count; i++)
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+        for (int i = 0; i < (SceneManager.sceneCountInBuildSettings - 2); i++)
         {
             string levelName = levelNames[i];
             int x = i / 2 * 4;

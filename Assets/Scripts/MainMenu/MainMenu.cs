@@ -9,6 +9,6 @@ public class MainMenu : MonoBehaviour
     public void OnClick()
     {
         SceneManager.LoadScene(levelScene);
-        GetComponent<RandomSound>().PlaySoundRandom(sounds);
+        //GetComponent<RandomSound>().PlaySoundRandom(sounds);
     }
 }

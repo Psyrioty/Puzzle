@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelLogic : MonoBehaviour
@@ -18,16 +19,21 @@ public class LevelLogic : MonoBehaviour
     [SerializeField] private Scrollbar scrollbar;
     private int maxPoints = 0; //это максимальный прогресс
     private int progress = 0; //прогресс
+    [SerializeField] private GameObject menu;
 
     //------------------звук----------------------
     [SerializeField] private List<AudioClip> trueMoveSounds; //когда вставил в нужную ячейку
     [SerializeField] private AudioSource otherAudio;//создание других звуков
     //=============================================
 
+    private int level;
+
     void Start()
     {
         FindAllItems();
         maxPoints = items.Count;
+
+        level = SceneManager.GetActiveScene().buildIndex;
     }
 
     void Update()
@@ -230,5 +236,14 @@ public class LevelLogic : MonoBehaviour
         progress++;
         float size = (float)progress / (float)maxPoints;
         scrollbar.size = size;
+
+        if(size >= 1)
+        {
+            menu.SetActive(true);
+            bar.SetActive(false);
+            camera.GetComponent<CameraController>().StopCamera();
+            PlayerPrefs.SetInt("CurrentLevel", level);
+            PlayerPrefs.Save();
+        }
     }
 }
