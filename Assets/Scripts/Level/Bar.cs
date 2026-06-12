@@ -26,7 +26,7 @@ public class Bar : MonoBehaviour
             return;
         }
 
-        if (Mouse.current.leftButton.wasReleasedThisFrame)
+        if (Pointer.current.press.wasReleasedThisFrame)
         {
             clicked = false;
             cameraController.ReturnCamera();

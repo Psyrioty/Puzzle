@@ -101,7 +101,7 @@ public class ItemBar : MonoBehaviour
             return;
         }
 
-        if (Mouse.current.leftButton.wasReleasedThisFrame)
+        if (Pointer.current.press.wasReleasedThisFrame)
         {
             CheckCollider();
 
@@ -123,7 +123,7 @@ public class ItemBar : MonoBehaviour
             return;
         }
 
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Pointer.current.position.ReadValue());
         MovePosition(mouseWorldPos);
     }
 

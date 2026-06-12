@@ -23,6 +23,7 @@ public class LevelLogic : MonoBehaviour
 
     //------------------звук----------------------
     [SerializeField] private List<AudioClip> trueMoveSounds; //когда вставил в нужную ячейку
+    [SerializeField] private List<AudioClip> victorySounds; //звуки победы
     [SerializeField] private AudioSource otherAudio;//создание других звуков
     //=============================================
 
@@ -45,11 +46,11 @@ public class LevelLogic : MonoBehaviour
     //ищу самый верхний коллайдер
     private void CheckMouseDown()
     {
-        if (!Mouse.current.leftButton.wasPressedThisFrame)
+        if (!Pointer.current.press.wasPressedThisFrame)
             return;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(
-            Mouse.current.position.ReadValue()
+            Pointer.current.position.ReadValue()
         );
 
         Collider2D[] hits = Physics2D.OverlapPointAll(mousePos);
@@ -159,7 +160,7 @@ public class LevelLogic : MonoBehaviour
     private void FindAllItems()
     {
         float x = 0;
-        float y = -1460;
+        float y = -1700;
 
         int i = 0; //итератор
 
@@ -239,6 +240,7 @@ public class LevelLogic : MonoBehaviour
 
         if(size >= 1)
         {
+            GetComponent<RandomSound>().PlaySoundRandom(victorySounds, otherAudio);
             menu.SetActive(true);
             bar.SetActive(false);
             camera.GetComponent<CameraController>().StopCamera();

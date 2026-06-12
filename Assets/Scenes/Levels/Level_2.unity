@@ -206,6 +206,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a36351fdf977489e587835d4c6c7a4a2, type: 3}
   - {fileID: 8300000, guid: 9fb389c5a778a669d9150d7479ce00e3, type: 3}
   - {fileID: 8300000, guid: d5f5ad3ab0d49416680a4d4afd4898d9, type: 3}
+  victorySounds:
+  - {fileID: 8300000, guid: 7dd5543b4458e0372bb3d496c7bfb7b4, type: 3}
+  - {fileID: 8300000, guid: 12cb942d9872a65ddb408f5d5a5acc14, type: 3}
+  - {fileID: 8300000, guid: 901bbfed033992a54afa7ef403ac22b6, type: 3}
   otherAudio: {fileID: 52692931}
 --- !u!82 &52692929
 AudioSource:
@@ -2359,7 +2363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   target: {fileID: 847170725}
-  stepModifier: 5
+  stepModifier: 3
   maxMoveX: 4700
   maxMoveY: 5800
   minMoveX: -4700
@@ -3176,8 +3180,8 @@ Transform:
   m_GameObject: {fileID: 1398583941}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -334, y: 469, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -334, y: -716, z: 10}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 847170725}

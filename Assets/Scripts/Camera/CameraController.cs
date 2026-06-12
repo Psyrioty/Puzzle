@@ -69,7 +69,7 @@ public class CameraController: MonoBehaviour
         Vector3 move = Vector3.zero;
 
         if(!blockMoveX){
-            float x = (mouseClickStartX - Mouse.current.position.ReadValue().x) * stepModifier;
+            float x = (mouseClickStartX - Pointer.current.position.ReadValue().x) * stepModifier;
             move.x += x;
 
             if(move.x + target.position.x > maxMoveX)
@@ -82,7 +82,7 @@ public class CameraController: MonoBehaviour
         }
 
         if(!blockMoveY){
-            float y = (mouseClickStartY - Mouse.current.position.ReadValue().y) * stepModifier;
+            float y = (mouseClickStartY - Pointer.current.position.ReadValue().y) * stepModifier;
             move.y += y;
 
             if(move.y + target.position.y > maxMoveY)
@@ -101,17 +101,17 @@ public class CameraController: MonoBehaviour
 
     private void UpdateMouseCoords()
     {
-        mouseClickStartX = Mouse.current.position.ReadValue().x;
-        mouseClickStartY = Mouse.current.position.ReadValue().y;
+        mouseClickStartX = Pointer.current.position.ReadValue().x;
+        mouseClickStartY = Pointer.current.position.ReadValue().y;
     }
 
     private void CheckClick()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Pointer.current.press.wasPressedThisFrame)
         {
             clicked = true;
         UpdateMouseCoords();
-        }else if (Mouse.current.leftButton.wasReleasedThisFrame)
+        }else if (Pointer.current.press.wasReleasedThisFrame)
         {
             clicked = false;
         UpdateMouseCoords();
