@@ -2800,10 +2800,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   target: {fileID: 847170725}
   stepModifier: 5
-  maxMoveX: 9000
-  maxMoveY: 11000
-  minMoveX: -9000
-  minMoveY: -11000
+  maxMoveX: 4700
+  maxMoveY: 5800
+  minMoveX: -4700
+  minMoveY: -5800
   blockMoveX: 0
   blockMoveY: 0
 --- !u!1001 &880182384
